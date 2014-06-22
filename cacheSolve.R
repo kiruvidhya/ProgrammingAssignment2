@@ -4,7 +4,9 @@
 cacheSolve <- function(x=matrix(), ...) {
 # Get the inverse matrix if it is cached  
  s <- x$getinv()
-  if(!is.null(s)) {
+ 
+ #  The following if condition checks inverse is calculated and matrix hasn't changed
+  if(!is.null(s) && all.equal(diag(2),x$get()%*%s)) {
     message("getting cached data")
     return(s)
   }
